@@ -134,7 +134,7 @@ func (ms *Source) Set(key string, value interface{}) error {
 	ms.Configurations[key] = value
 
 	if ms.callback != nil {
-		ms.callback.OnEvent(e)
+		ms.callback.OnEvent(append([]*event.Event{}, e))
 	}
 
 	return nil
@@ -162,7 +162,7 @@ func (ms *Source) Delete(key string) error {
 	ms.Unlock()
 
 	if ms.callback != nil {
-		ms.callback.OnEvent(e)
+		ms.callback.OnEvent(append([]*event.Event{}, e))
 	}
 
 	return nil

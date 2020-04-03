@@ -143,9 +143,9 @@ func (ks *Source) updateConfigAndFireEvent(config map[string]interface{}) error 
 	//Generate OnEvent Callback based on the events created
 	if ks.eh != nil {
 		openlogging.GetLogger().Debugf("received event %s", events)
-		for _, e := range events {
-			ks.eh.OnEvent(e)
-		}
+		//for _, e := range events {
+			ks.eh.OnEvent(events)
+		//}
 	}
 	return nil
 }

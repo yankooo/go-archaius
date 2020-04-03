@@ -128,20 +128,21 @@ func (as *Source) Delete(key string) error {
 // UpdateCallback callback function when config updates
 func (as *Source) UpdateCallback(apolloEvent *apollo.ChangeEvent) error {
 	if as.eventHandler != nil {
+		var es = make([]*event.Event, len(apolloEvent.Changes))
 		for _, c := range apolloEvent.Changes {
 			eventType := transformEventType(c.ChangeType)
 			if eventType == "" {
 				continue
 			}
 
-			e := &event.Event{
+			es = append(es,  &event.Event{
 				EventSource: apolloSourceName,
 				EventType:   eventType,
-				Key:         apolloEvent.Namespace + "." + c.Key, // to make sure key is prefix with namespace
+				Key:         apolloEvent.Namespace + "|||" + c.Key, // to make sure key is prefix with namespace
 				Value:       c.NewValue,
-			}
-			as.eventHandler.OnEvent(e)
+			})
 		}
+		as.eventHandler.OnEvent(es)
 	}
 	return nil
 }

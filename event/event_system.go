@@ -51,7 +51,7 @@ type Event struct {
 
 // Listener All Listener should implement this Interface
 type Listener interface {
-	Event(event *Event)
+	Event(event []*Event)
 }
 
 //Dispatcher is the observer
@@ -124,24 +124,49 @@ func (dis *Dispatcher) UnRegisterListener(listenerObj Listener, keys ...string) 
 }
 
 // DispatchEvent sends the action trigger for a particular event on a configuration
-func (dis *Dispatcher) DispatchEvent(event *Event) error {
-	if event == nil {
+func (dis *Dispatcher) DispatchEvent(events []*Event) error {
+	if events == nil {
 		return errors.New("empty event provided")
 	}
 
-	for regKey, listeners := range dis.listeners {
-		matched, err := regexp.MatchString(regKey, event.Key)
-		if err != nil {
-			openlogging.GetLogger().Errorf("regular expresssion for key %s failed: %s", regKey, err)
-			continue
-		}
-		if matched {
+	// 1. 先把events整理一下，把含有相同key的event合并在一起
+	eventsList := dis.parseEvents(events)
+
+	// 2. 含有相同Key的event就只提醒一次
+	for key, events := range eventsList {
+		if listeners, ok := dis.listeners[key]; ok {
 			for _, listener := range listeners {
-				openlogging.GetLogger().Infof("event generated for %s", regKey)
-				go listener.Event(event)
+				openlogging.GetLogger().Infof("event generated for %s", key)
+				go listener.Event(events)
 			}
 		}
 	}
 
 	return nil
+}
+
+func (dis *Dispatcher) parseEvents(events []*Event) map[string][]*Event {
+	var eventList = make(map[string][]*Event)
+	for _, event := range events {
+		// 先对events分一下类，匹配同一个key的event就集中在一起回调
+		for regKey := range dis.listeners {
+			matched, err := regexp.MatchString(regKey, event.Key)
+			if err != nil {
+				openlogging.GetLogger().Errorf("regular expresssion for key %s failed: %s", regKey, err)
+				continue
+			}
+			if matched {
+				if module, ok := eventList[regKey]; ok {
+					events := module
+					events = append(events, event)
+					eventList[regKey] = events
+				} else {
+					newModule := append([]*Event{}, event)
+					eventList[regKey] = newModule
+				}
+			}
+		}
+	}
+
+	return eventList
 }

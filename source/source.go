@@ -19,5 +19,5 @@ type ConfigSource interface {
 
 // EventHandler handles config change event
 type EventHandler interface {
-	OnEvent(event *event.Event)
+	OnEvent(event []*event.Event)
 }

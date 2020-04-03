@@ -340,61 +340,62 @@ func (m *Manager) updateConfigurationMapByDI(source ConfigSource, configs map[st
 	return nil
 }
 
-func (m *Manager) updateEvent(e *event.Event) error {
-	// refresh all configuration one by one
-	if e == nil || e.EventSource == "" || e.Key == "" {
-		return errors.New("nil or invalid event supplied")
-	}
-	openlogging.GetLogger().Infof("event received %s", e)
-	switch e.EventType {
-	case event.Create, event.Update:
-		m.configMapMux.Lock()
-		sourceName, ok := m.ConfigurationMap[e.Key]
-		if !ok {
-			m.ConfigurationMap[e.Key] = e.EventSource
-			e.EventType = event.Create
-		} else if sourceName == e.EventSource {
-			e.EventType = event.Update
-		} else if sourceName != e.EventSource {
-			prioritySrc := m.getHighPrioritySource(sourceName, e.EventSource)
-			if prioritySrc != nil && prioritySrc.GetSourceName() == sourceName {
-				// if event generated from less priority source then ignore
-				m.configMapMux.Unlock()
-				openlogging.GetLogger().Infof("the event source %s's priority is less then %s's, ignore",
-					e.EventSource, sourceName)
-				return nil
-			}
-			m.ConfigurationMap[e.Key] = e.EventSource
-			e.EventType = event.Update
+func (m *Manager) updateEvent(es []*event.Event) error {
+	for _, e := range es {
+		// refresh all configuration one by one
+		if e == nil || e.EventSource == "" || e.Key == "" {
+			return errors.New("nil or invalid event supplied")
 		}
-		m.configMapMux.Unlock()
-
-	case event.Delete:
-		m.configMapMux.Lock()
-		sourceName, ok := m.ConfigurationMap[e.Key]
-		if !ok || sourceName != e.EventSource {
-			// if delete event generated from source not maintained ignore it
+		openlogging.GetLogger().Infof("event received %s", e)
+		switch e.EventType {
+		case event.Create, event.Update:
+			m.configMapMux.Lock()
+			sourceName, ok := m.ConfigurationMap[e.Key]
+			if !ok {
+				m.ConfigurationMap[e.Key] = e.EventSource
+				e.EventType = event.Create
+			} else if sourceName == e.EventSource {
+				e.EventType = event.Update
+			} else if sourceName != e.EventSource {
+				prioritySrc := m.getHighPrioritySource(sourceName, e.EventSource)
+				if prioritySrc != nil && prioritySrc.GetSourceName() == sourceName {
+					// if event generated from less priority source then ignore
+					m.configMapMux.Unlock()
+					openlogging.GetLogger().Infof("the event source %s's priority is less then %s's, ignore",
+						e.EventSource, sourceName)
+					return nil
+				}
+				m.ConfigurationMap[e.Key] = e.EventSource
+				e.EventType = event.Update
+			}
 			m.configMapMux.Unlock()
-			return nil
-		} else if sourceName == e.EventSource {
-			// find less priority source or delete key
-			source := m.findNextBestSource(e.Key, sourceName)
-			if source == nil {
-				delete(m.ConfigurationMap, e.Key)
-			} else {
-				m.ConfigurationMap[e.Key] = source.GetSourceName()
-			}
-		}
-		m.configMapMux.Unlock()
-	}
 
-	m.dispatcher.DispatchEvent(e)
+		case event.Delete:
+			m.configMapMux.Lock()
+			sourceName, ok := m.ConfigurationMap[e.Key]
+			if !ok || sourceName != e.EventSource {
+				// if delete event generated from source not maintained ignore it
+				m.configMapMux.Unlock()
+				return nil
+			} else if sourceName == e.EventSource {
+				// find less priority source or delete key
+				source := m.findNextBestSource(e.Key, sourceName)
+				if source == nil {
+					delete(m.ConfigurationMap, e.Key)
+				} else {
+					m.ConfigurationMap[e.Key] = source.GetSourceName()
+				}
+			}
+			m.configMapMux.Unlock()
+		}
+	}
+	m.dispatcher.DispatchEvent(es)
 
 	return nil
 }
 
 // OnEvent Triggers actions when an event is generated
-func (m *Manager) OnEvent(event *event.Event) {
+func (m *Manager) OnEvent(event []*event.Event) {
 	err := m.updateEvent(event)
 	if err != nil {
 		openlogging.GetLogger().Error("failed in updating event with error: " + err.Error())

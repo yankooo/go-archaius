@@ -232,9 +232,9 @@ func (fSource *Source) handleFile(file *os.File, priority uint32, handle util.Fi
 
 	events := fSource.compareUpdate(config, file.Name())
 	if fSource.watchPool != nil && fSource.watchPool.callback != nil { // if file source already added and try to add
-		for _, e := range events {
-			fSource.watchPool.callback.OnEvent(e)
-		}
+		//for _, e := range events {
+			fSource.watchPool.callback.OnEvent(events)
+		//}
 	}
 
 	return nil
@@ -435,9 +435,9 @@ func (wth *watch) watchFile() {
 			}
 			events := wth.fileSource.compareUpdate(newConf, event.Name)
 			openlogging.GetLogger().Debugf("generated events %v", events)
-			for _, e := range events {
-				wth.callback.OnEvent(e)
-			}
+			//for _, e := range events {
+				wth.callback.OnEvent(events)
+			//}
 
 		case err := <-wth.watcher.Errors:
 			openlogging.GetLogger().Debugf("watch file error:", err)
