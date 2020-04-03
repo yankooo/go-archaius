@@ -135,7 +135,7 @@ func (as *Source) UpdateCallback(apolloEvent *apollo.ChangeEvent) error {
 				continue
 			}
 
-			es = append(es,  &event.Event{
+			es = append(es, &event.Event{
 				EventSource: apolloSourceName,
 				EventType:   eventType,
 				Key:         apolloEvent.Namespace + "." + c.Key, // to make sure key is prefix with namespace
