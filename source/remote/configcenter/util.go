@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/go-chassis/go-archaius/source/remote"
+	"github.com/yankooo/go-archaius/source/remote"
 )
 
 const (

@@ -21,8 +21,8 @@ package filesource_test
 
 import (
 	"fmt"
-	"github.com/go-chassis/go-archaius/event"
-	filesource "github.com/go-chassis/go-archaius/source/file"
+	"github.com/yankooo/go-archaius/event"
+	filesource "github.com/yankooo/go-archaius/source/file"
 	"github.com/stretchr/testify/assert"
 	"io"
 	"os"

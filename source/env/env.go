@@ -18,7 +18,7 @@
 package env
 
 import (
-	"github.com/go-chassis/go-archaius/source"
+	"github.com/yankooo/go-archaius/source"
 	"os"
 	"strings"
 	"sync"

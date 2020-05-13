@@ -2,7 +2,7 @@ package event_test
 
 import (
 	"fmt"
-	"github.com/go-chassis/go-archaius/event"
+	"github.com/yankooo/go-archaius/event"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

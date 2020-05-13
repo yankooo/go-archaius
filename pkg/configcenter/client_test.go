@@ -1,7 +1,7 @@
 package configcenter_test
 
 import (
-	"github.com/go-chassis/go-archaius/pkg/configcenter"
+	"github.com/yankooo/go-archaius/pkg/configcenter"
 	"testing"
 )
 

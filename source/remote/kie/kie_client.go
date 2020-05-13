@@ -23,9 +23,9 @@ import (
 	"sync"
 	"time"
 
-	client "github.com/go-chassis/go-archaius/pkg/kieclient"
-	"github.com/go-chassis/go-archaius/source/remote"
-	"github.com/go-chassis/go-archaius/source/util/queue"
+	client "github.com/yankooo/go-archaius/pkg/kieclient"
+	"github.com/yankooo/go-archaius/source/remote"
+	"github.com/yankooo/go-archaius/source/util/queue"
 	"github.com/go-mesh/openlogging"
 )
 

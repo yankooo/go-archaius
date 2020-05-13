@@ -20,10 +20,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/go-chassis/go-archaius"
-	"github.com/go-chassis/go-archaius/event"
-	"github.com/go-chassis/go-archaius/source"
-	"github.com/go-chassis/go-archaius/source/remote"
+	"github.com/yankooo/go-archaius"
+	"github.com/yankooo/go-archaius/event"
+	"github.com/yankooo/go-archaius/source"
+	"github.com/yankooo/go-archaius/source/remote"
 	"github.com/go-mesh/openlogging"
 )
 

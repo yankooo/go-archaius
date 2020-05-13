@@ -21,8 +21,8 @@ package env_test
 
 import (
 	"fmt"
-	"github.com/go-chassis/go-archaius/event"
-	"github.com/go-chassis/go-archaius/source/env"
+	"github.com/yankooo/go-archaius/event"
+	"github.com/yankooo/go-archaius/source/env"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"

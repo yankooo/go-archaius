@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"testing"
 
-	client "github.com/go-chassis/go-archaius/pkg/kieclient"
-	"github.com/go-chassis/go-archaius/source/remote"
+	client "github.com/yankooo/go-archaius/pkg/kieclient"
+	"github.com/yankooo/go-archaius/source/remote"
 	"github.com/stretchr/testify/assert"
 )
 

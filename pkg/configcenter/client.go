@@ -22,7 +22,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/go-chassis/foundation/httpclient"
-	"github.com/go-chassis/go-archaius/pkg/serializers"
+	"github.com/yankooo/go-archaius/pkg/serializers"
 	"github.com/go-mesh/openlogging"
 	"github.com/gorilla/websocket"
 	"io/ioutil"

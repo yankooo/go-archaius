@@ -30,9 +30,9 @@ import (
 	"time"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/go-chassis/go-archaius/event"
-	"github.com/go-chassis/go-archaius/source"
-	"github.com/go-chassis/go-archaius/source/util"
+	"github.com/yankooo/go-archaius/event"
+	"github.com/yankooo/go-archaius/source"
+	"github.com/yankooo/go-archaius/source/util"
 	"github.com/go-mesh/openlogging"
 )
 

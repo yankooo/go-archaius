@@ -1,10 +1,10 @@
 package mem
 
 import (
-	"github.com/go-chassis/go-archaius/event"
+	"github.com/yankooo/go-archaius/event"
 	"sync"
 
-	"github.com/go-chassis/go-archaius/source"
+	"github.com/yankooo/go-archaius/source"
 	"github.com/go-mesh/openlogging"
 )
 

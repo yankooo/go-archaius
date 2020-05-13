@@ -21,7 +21,7 @@ package cli
 
 import (
 	"fmt"
-	"github.com/go-chassis/go-archaius/event"
+	"github.com/yankooo/go-archaius/event"
 	"os"
 	"testing"
 )

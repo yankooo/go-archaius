@@ -7,13 +7,13 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-chassis/go-archaius/cast"
-	"github.com/go-chassis/go-archaius/event"
-	"github.com/go-chassis/go-archaius/source"
-	"github.com/go-chassis/go-archaius/source/cli"
-	"github.com/go-chassis/go-archaius/source/env"
-	"github.com/go-chassis/go-archaius/source/file"
-	"github.com/go-chassis/go-archaius/source/mem"
+	"github.com/yankooo/go-archaius/cast"
+	"github.com/yankooo/go-archaius/event"
+	"github.com/yankooo/go-archaius/source"
+	"github.com/yankooo/go-archaius/source/cli"
+	"github.com/yankooo/go-archaius/source/env"
+	"github.com/yankooo/go-archaius/source/file"
+	"github.com/yankooo/go-archaius/source/mem"
 	"github.com/go-mesh/openlogging"
 )
 

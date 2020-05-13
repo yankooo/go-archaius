@@ -1,0 +1,17 @@
+key: peter
+info:
+  address: a
+  number: 8
+metadata:
+  a: b
+companys:
+  baidu:
+    addr: "chain"
+    tel: "123456"
+    money: 1234
+    stock: "global"
+  tencent:
+    addr: "zhenshen"
+    tel: "000000"
+    money: 999
+    stock: "global"

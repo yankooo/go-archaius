@@ -2,7 +2,7 @@ package archaius
 
 import (
 	"crypto/tls"
-	"github.com/go-chassis/go-archaius/source/util"
+	"github.com/yankooo/go-archaius/source/util"
 )
 
 // RemoteInfo has attribute for config center source initialization

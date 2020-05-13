@@ -21,8 +21,8 @@ package mem_test
 
 import (
 	"fmt"
-	"github.com/go-chassis/go-archaius/event"
-	"github.com/go-chassis/go-archaius/source/mem"
+	"github.com/yankooo/go-archaius/event"
+	"github.com/yankooo/go-archaius/source/mem"
 	"testing"
 )
 

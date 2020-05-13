@@ -1,7 +1,7 @@
 package serializers
 
 import (
-	"github.com/go-chassis/go-archaius/pkg/serializers/json"
+	"github.com/yankooo/go-archaius/pkg/serializers/json"
 	"testing"
 )
 

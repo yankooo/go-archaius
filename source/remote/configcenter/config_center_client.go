@@ -19,8 +19,8 @@ package configcenter
 import (
 	"strings"
 
-	"github.com/go-chassis/go-archaius/pkg/configcenter"
-	"github.com/go-chassis/go-archaius/source/remote"
+	"github.com/yankooo/go-archaius/pkg/configcenter"
+	"github.com/yankooo/go-archaius/source/remote"
 	"github.com/go-mesh/openlogging"
 	"github.com/gorilla/websocket"
 )

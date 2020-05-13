@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	agollo "github.com/Shonminh/apollo-client"
-	"github.com/go-chassis/go-archaius"
-	"github.com/go-chassis/go-archaius/event"
-	"github.com/go-chassis/go-archaius/source/apollo"
-	_ "github.com/go-chassis/go-archaius/source/apollo"
+	"github.com/yankooo/go-archaius"
+	"github.com/yankooo/go-archaius/event"
+	"github.com/yankooo/go-archaius/source/apollo"
+	_ "github.com/yankooo/go-archaius/source/apollo"
 	"github.com/go-mesh/openlogging"
 	"time"
 )

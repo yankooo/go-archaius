@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/go-chassis/go-archaius"
+	"github.com/yankooo/go-archaius"
 	"log"
 	"os"
 )

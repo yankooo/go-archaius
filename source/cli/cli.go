@@ -22,7 +22,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/go-chassis/go-archaius/source"
+	"github.com/yankooo/go-archaius/source"
 )
 
 //const

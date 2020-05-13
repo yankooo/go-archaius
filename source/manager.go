@@ -28,7 +28,7 @@ import (
 	"regexp"
 	"sync"
 
-	"github.com/go-chassis/go-archaius/event"
+	"github.com/yankooo/go-archaius/event"
 	"github.com/go-mesh/openlogging"
 )
 

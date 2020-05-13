@@ -19,7 +19,7 @@ package serializers
 
 import (
 	"errors"
-	"github.com/go-chassis/go-archaius/pkg/serializers/json"
+	"github.com/yankooo/go-archaius/pkg/serializers/json"
 )
 
 const (

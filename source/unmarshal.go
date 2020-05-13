@@ -27,7 +27,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/go-chassis/go-archaius/cast"
+	"github.com/yankooo/go-archaius/cast"
 	"github.com/go-mesh/openlogging"
 )
 

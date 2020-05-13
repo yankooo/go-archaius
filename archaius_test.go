@@ -1,13 +1,14 @@
 package archaius_test
 
 import (
-	"github.com/go-chassis/go-archaius/event"
+	"fmt"
+	"github.com/yankooo/go-archaius/event"
 	"io"
 	"os"
 	"path/filepath"
 	"testing"
 
-	"github.com/go-chassis/go-archaius"
+	"github.com/yankooo/go-archaius"
 	"github.com/go-mesh/openlogging"
 	"github.com/stretchr/testify/assert"
 )
@@ -123,7 +124,7 @@ metadata:
 	f1, err := os.Create(filename1)
 	assert.NoError(t, err)
 	defer f1.Close()
-	defer os.Remove(filename1)
+	//defer os.Remove(filename1)
 	_, err = io.WriteString(f1, string(b))
 	assert.NoError(t, err)
 
@@ -136,8 +137,10 @@ metadata:
 		MD   map[string]string `yaml:"metadata"`
 		Info *Info             `yaml:"info"`
 	}
-	err = archaius.AddFile(filename1)
-	assert.NoError(t, err)
+	fmt.Println(filename1)
+	archaius.Init(
+		archaius.WithOptionalFiles([]string{filename2}),
+		)
 	p := &Person{}
 	err = archaius.UnmarshalConfig(p)
 	assert.NoError(t, err)
@@ -145,8 +148,57 @@ metadata:
 	assert.Equal(t, "b", p.MD["a"])
 	assert.Equal(t, "a", p.Info.Addr)
 	assert.Equal(t, 8, p.Info.Number)
-
 }
+
+
+func TestUnmarshalConfig2(t *testing.T) {
+	type Info struct {
+		Addr   string `yaml:"address"`
+		Number int    `yaml:"number"`
+	}
+
+	type Company struct {
+		Addr string `yaml:"addr"`
+		Tel  string `yaml:"tal"`
+		Money int `yaml:"money"`
+		Stock string `yaml:"stock"`
+	}
+
+	type Person struct {
+		Name string            `yaml:"key"`
+		MD   map[string]string `yaml:"metadata"`
+		Info *Info             `yaml:"info"`
+		Companys map[string]Company `yaml:"companys"`
+	}
+
+	/*
+	  company:
+	    addr: "chain"
+	    tel: "123456"
+	    money: 1234
+	    stock: "global"
+
+	*/
+
+	archaius.Init(
+		archaius.WithOptionalFiles([]string{"./f3.yaml"}),
+	)
+	p := &Person{}
+
+	/*file, err := os.OpenFile("./f3.yaml", os.O_RDWR,0644)
+	if err != nil {
+		t.Errorf("%+v", err)
+	}
+	bytes, _ := ioutil.ReadAll(file)*/
+	if err := archaius.UnmarshalConfig(p); err != nil {
+	//if err := yaml.Unmarshal(bytes, p); err != nil {
+		t.Errorf("unmarshalconfig err: %+v", err)
+	}
+
+	fmt.Printf("person: %+v\n", p)
+}
+
+
 func TestInitConfigCenter(t *testing.T) {
 	err := archaius.EnableRemoteSource("fake", nil)
 	assert.Error(t, err)

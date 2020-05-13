@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/go-chassis/go-archaius"
-	"github.com/go-chassis/go-archaius/source/util"
+	"github.com/yankooo/go-archaius"
+	"github.com/yankooo/go-archaius/source/util"
 	"github.com/go-mesh/openlogging"
 	"log"
 )

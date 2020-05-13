@@ -126,7 +126,7 @@ v := archaius.GetString("/etc/component/xxx.txt", "")
 ### Enable remote source
 If you want to use one remote source, you must import the corresponding package of the source in your code.
 ```go
-import _ "github.com/go-chassis/go-archaius/source/remote/kie"
+import _ "github.com/yankooo/go-archaius/source/remote/kie"
 ```
 set remote info to init remote source
 ```go
@@ -145,17 +145,17 @@ Supported distributed configuration management service:
 
 | name       | import                                         |description    |
 |----------|----------|:-------------:|
-| kie | github.com/go-chassis/go-archaius/source/remote/kie |ServiceComb-Kie is a config server which manage configurations in a distributed system. It is also a micro service in ServiceComb ecosystem and developed by [go-chassis](https://github.com/go-chassis/go-chassis) we call it ServiceComb Native application. https://kie.readthedocs.io |
-| config-center | github.com/go-chassis/go-archaius/source/remote/configcenter |huawei cloud CSE config center https://www.huaweicloud.com/product/cse.html |
-| apollo | github.com/go-chassis/go-archaius/source/apollo |A reliable configuration management system https://github.com/ctripcorp/apollo |
+| kie | github.com/yankooo/go-archaius/source/remote/kie |ServiceComb-Kie is a config server which manage configurations in a distributed system. It is also a micro service in ServiceComb ecosystem and developed by [go-chassis](https://github.com/go-chassis/go-chassis) we call it ServiceComb Native application. https://kie.readthedocs.io |
+| config-center | github.com/yankooo/go-archaius/source/remote/configcenter |huawei cloud CSE config center https://www.huaweicloud.com/product/cse.html |
+| apollo | github.com/yankooo/go-archaius/source/apollo |A reliable configuration management system https://github.com/ctripcorp/apollo |
 
 ### Example: Manage local configurations 
-Complete [example](https://github.com/go-chassis/go-archaius/tree/master/examples/file)
+Complete [example](https://github.com/yankooo/go-archaius/tree/master/examples/file)
 
 ### Example: Manage key value change events
-Complete [example](https://github.com/go-chassis/go-archaius/tree/master/examples/event)
+Complete [example](https://github.com/yankooo/go-archaius/tree/master/examples/event)
 
 ### Example: Manage remote source configurations
 
-Complete [example](https://github.com/go-chassis/go-archaius/tree/master/examples/kie)
+Complete [example](https://github.com/yankooo/go-archaius/tree/master/examples/kie)
 

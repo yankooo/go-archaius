@@ -17,7 +17,7 @@
 
 package archaius
 
-import "github.com/go-chassis/go-archaius/source"
+import "github.com/yankooo/go-archaius/source"
 
 var newFuncMap = make(map[string]NewRemoteSource)
 

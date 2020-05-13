@@ -18,8 +18,8 @@
 package archaius_test
 
 import (
-	"github.com/go-chassis/go-archaius"
-	"github.com/go-chassis/go-archaius/source/remote/configcenter"
+	"github.com/yankooo/go-archaius"
+	"github.com/yankooo/go-archaius/source/remote/configcenter"
 	"testing"
 )
 

@@ -20,7 +20,7 @@ package kie
 import (
 	"errors"
 
-	"github.com/go-chassis/go-archaius/source/remote"
+	"github.com/yankooo/go-archaius/source/remote"
 )
 
 //GenerateLabels generate labels to an specific dimensions
